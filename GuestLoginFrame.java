@@ -110,7 +110,7 @@ public class GuestLoginFrame
 						//We can check if user exists, but we'll forget about it for now
 						Guest newGuest = new Guest(newUserID, newUserName);
 						model.updateUserList(newGuest);
-						model.updateCurrentUserID(newUserID);
+						model.updateCurrentUser(newGuest);
 						//TODO: create GuestResHandler and pass on model; dispose this frame
 						frame.dispose();
 					}

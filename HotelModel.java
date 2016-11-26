@@ -9,7 +9,7 @@ public class HotelModel
 	private TreeMap<String, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
 	private ArrayList<User> userList;
 	private ArrayList<ChangeListener> listeners;
-	private String currentUserID;
+	private User currentUser;
 	
 	public HotelModel(TreeMap<String, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
 	{
@@ -28,9 +28,9 @@ public class HotelModel
 		return this.userList;
 	}
 	
-	public String getCurrentUserID()
+	public User getCurrentUser()
 	{
-		return this.currentUserID;
+		return this.currentUser;
 	}
 	
 	public void attachListener(ChangeListener c)
@@ -58,9 +58,9 @@ public class HotelModel
 		}
 	}
 	
-	public void updateCurrentUserID(String newCurrentUserID)
+	public void updateCurrentUser(User newCurrentUser)
 	{
-		this.currentUserID = newCurrentUserID;
+		this.currentUser = newCurrentUser;
 		ChangeEvent event = new ChangeEvent(this);
 		for (ChangeListener listen : listeners)
 		{

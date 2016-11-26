@@ -110,7 +110,7 @@ public class ManagerLoginFrame
 						//We can check if user exists, but we'll forget about it for now
 						Manager newManager = new Manager(newUserID, newUserName);
 						model.updateUserList(newManager);
-						model.updateCurrentUserID(newUserID);
+						model.updateCurrentUser(newManager);
 						//TODO: create ManagerResHandler and pass on model; dispose this frame
 						frame.dispose();
 					}
