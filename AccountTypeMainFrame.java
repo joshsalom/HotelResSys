@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +18,11 @@ public class AccountTypeMainFrame
 		//list of each reservation detail under this user: room#, start time, end time
 		//room# such as "1" or "20" will be distinguishable from usernames, we can force users to create names >3 letters
 		
+		//TEMPORARY DATA STRUCTURE INITIALIZATION
+		TreeMap<String, ArrayList<Reservation>> roomMap = new TreeMap<String, ArrayList<Reservation>>();
+		ArrayList<User> userList = new ArrayList<User>();
 		
+		HotelModel model = new HotelModel(roomMap, userList);
 		
 		JFrame frame = new JFrame();
 		frame.setSize(400, 140);
@@ -38,6 +44,8 @@ public class AccountTypeMainFrame
 		frame.add(labelPanel, BorderLayout.CENTER);
 		
 		JButton guestButton = new JButton("Guest");
+		
+		
 		
 		JButton managerButton = new JButton("Manager");
 		

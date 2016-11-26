@@ -5,19 +5,19 @@ import javax.swing.event.ChangeListener;
 
 public class HotelModel
 {
-	private TreeMap<String, Reservation> roomMap; //remember Res for start/end dates
+	private TreeMap<String, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
 	private ArrayList<User> userList;
 	private ArrayList<ChangeListener> listeners;
 	//TODO: might need to keep track of current user? we'll see
 	
-	public HotelModel(TreeMap<String, Reservation> roomMap, ArrayList<User> userList)
+	public HotelModel(TreeMap<String, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
 	{
 		this.roomMap = roomMap;
 		this.userList = userList;
 		listeners = new ArrayList<ChangeListener>();
 	}
 	
-	public TreeMap<String, Reservation> getRoomMap()
+	public TreeMap<String, ArrayList<Reservation>> getRoomMap()
 	{
 		return this.roomMap;
 	}
