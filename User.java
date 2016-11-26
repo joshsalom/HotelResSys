@@ -5,10 +5,10 @@
  */
 public class User
 {
-	private int userID;
+	private String userID;
 	private String userName;
 
-	public User(int userID, String userName)
+	public User(String userID, String userName)
 	{
 		this.userID = userID;
 		this.userName = userName;
@@ -29,7 +29,7 @@ public class User
 	 * 
 	 * @return user ID
 	 */
-	public int getID()
+	public String getID()
 	{
 		return this.userID;
 	}

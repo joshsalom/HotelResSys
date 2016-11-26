@@ -9,7 +9,7 @@ public class Guest extends User
 {
 	private ArrayList<Reservation> reservations;
 
-	public Guest(int userID, String userName)
+	public Guest(String userID, String userName)
 	{
 		super(userID, userName);
 		reservations = new ArrayList<Reservation>();

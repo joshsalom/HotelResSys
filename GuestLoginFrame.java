@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,10 +13,13 @@ import javax.swing.JTextField;
 
 public class GuestLoginFrame
 {
-	public GuestLoginFrame(HotelModel model)
+	private HotelModel model;
+	
+	public GuestLoginFrame(HotelModel theModel)
 	{
+		this.model = theModel;
 		JFrame frame = new JFrame();
-		frame.setSize(400, 260);
+		frame.setSize(400, 300);
 		frame.setLayout(new BorderLayout());
 
 		JLabel welcomeLabel = new JLabel("Guest: Sign In or Sign Up");
@@ -39,9 +43,37 @@ public class GuestLoginFrame
 		signInContent.add(signInTextField);
 		signInPanel.add(signInContent);
 		
+		JLabel signInPrompt2 = new JLabel(" ");
+		JPanel signInContent2 = new JPanel();
+		signInContent2.add(signInPrompt2);
+		signInPanel.add(signInContent2);
+		
 		JButton signInButton = new JButton("Sign In");
 		signInContent.add(signInButton);
-		//TODO
+		signInButton.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent arg0)
+					{
+						String input = signInTextField.getText();
+						ArrayList<User> userList = model.getUserList();
+						for (User thisUser : userList)
+						{
+							if (!thisUser.isManager() && thisUser.getID().equals(input))
+							{
+								//TODO: Update current user; Create GuestResHandler and pass on model to this class
+							}
+						}
+						if (signInTextField.getText().equals(""))
+						{
+							signInPrompt2.setText("Error: Guest account does not exist");
+						}
+						
+					}
+			
+				});
+		
 		
 		frame.add(signInPanel, BorderLayout.CENTER);
 		
