@@ -62,13 +62,10 @@ public class GuestLoginFrame
 						{
 							if (!thisUser.isManager() && thisUser.getID().equals(input))
 							{
-								//TODO: Update current user; Create GuestResHandler and pass on model to this class
+								//TODO: Update current user; Create GuestResHandler and pass on model to this class; dispose this frame
 							}
 						}
-						if (signInTextField.getText().equals(""))
-						{
-							signInPrompt2.setText("Error: Guest account does not exist");
-						}
+						signInPrompt2.setText("Error: Guest account does not exist");
 						
 					}
 			
@@ -102,6 +99,23 @@ public class GuestLoginFrame
 		
 		JButton signUpButton = new JButton("Sign Up");
 		signUpPanel.add(signUpButton);
+		signUpButton.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent arg0)
+					{
+						String newUserID = signUpTextField1.getText();
+						String newUserName = signUpTextField2.getText();
+						//We can check if user exists, but we'll forget about it for now
+						Guest newGuest = new Guest(newUserID, newUserName);
+						model.updateUserList(newGuest);
+						model.updateCurrentUserID(newUserID);
+						//TODO: create GuestResHandler and pass on model; dispose this frame
+						frame.dispose();
+					}
+			
+				});
 		
 		JLabel blank = new JLabel(" ");
 		signUpPanel.add(blank);

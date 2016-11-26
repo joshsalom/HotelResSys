@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,10 +13,13 @@ import javax.swing.JTextField;
 
 public class ManagerLoginFrame
 {
-	public ManagerLoginFrame(HotelModel model)
+	private HotelModel model;
+	
+	public ManagerLoginFrame(HotelModel theModel)
 	{
+		this.model = theModel;
 		JFrame frame = new JFrame();
-		frame.setSize(400, 260);
+		frame.setSize(400, 300);
 		frame.setLayout(new BorderLayout());
 
 		JLabel welcomeLabel = new JLabel("Manager: Sign In or Sign Up");
@@ -39,9 +43,34 @@ public class ManagerLoginFrame
 		signInContent.add(signInTextField);
 		signInPanel.add(signInContent);
 		
+		JLabel signInPrompt2 = new JLabel(" ");
+		JPanel signInContent2 = new JPanel();
+		signInContent2.add(signInPrompt2);
+		signInPanel.add(signInContent2);
+		
 		JButton signInButton = new JButton("Sign In");
 		signInContent.add(signInButton);
-		//TODO
+		signInButton.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent arg0)
+					{
+						String input = signInTextField.getText();
+						ArrayList<User> userList = model.getUserList();
+						for (User thisUser : userList)
+						{
+							if (thisUser.isManager() && thisUser.getID().equals(input))
+							{
+								//TODO: Update current user; Create ManagerResHandler and pass on model to this class; dispose this frame
+							}
+						}
+						signInPrompt2.setText("Error: Manager account does not exist");
+						
+					}
+			
+				});
+		
 		
 		frame.add(signInPanel, BorderLayout.CENTER);
 		
@@ -70,6 +99,23 @@ public class ManagerLoginFrame
 		
 		JButton signUpButton = new JButton("Sign Up");
 		signUpPanel.add(signUpButton);
+		signUpButton.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent arg0)
+					{
+						String newUserID = signUpTextField1.getText();
+						String newUserName = signUpTextField2.getText();
+						//We can check if user exists, but we'll forget about it for now
+						Manager newManager = new Manager(newUserID, newUserName);
+						model.updateUserList(newManager);
+						model.updateCurrentUserID(newUserID);
+						//TODO: create ManagerResHandler and pass on model; dispose this frame
+						frame.dispose();
+					}
+			
+				});
 		
 		JLabel blank = new JLabel(" ");
 		signUpPanel.add(blank);

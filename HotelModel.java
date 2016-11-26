@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class HotelModel
@@ -40,15 +41,30 @@ public class HotelModel
 	public void updateRoomMap()
 	{
 		//TODO
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
 	}
 	
-	public void updateUserList()
+	public void updateUserList(User newUser)
 	{
-		//TODO
+		userList.add(newUser);
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
 	}
 	
 	public void updateCurrentUserID(String newCurrentUserID)
 	{
 		this.currentUserID = newCurrentUserID;
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
 	}
 }
