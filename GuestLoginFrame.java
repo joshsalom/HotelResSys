@@ -111,6 +111,7 @@ public class GuestLoginFrame
 						Guest newGuest = new Guest(newUserID, newUserName);
 						model.updateUserList(newGuest);
 						model.updateCurrentUser(newGuest);
+						GuestResHandler newGRH = new GuestResHandler(model);
 						//TODO: create GuestResHandler and pass on model; dispose this frame
 						frame.dispose();
 					}
