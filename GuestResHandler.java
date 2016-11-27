@@ -53,7 +53,7 @@ public class GuestResHandler
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						//TODO: Create GuestViewFrame, pass on model
+						GuestVCFrame newViewCancelFrame = new GuestVCFrame(model);
 						frame.dispose();
 					}
 			
