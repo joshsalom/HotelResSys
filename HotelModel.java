@@ -10,6 +10,9 @@ public class HotelModel
 	private ArrayList<User> userList;
 	private ArrayList<ChangeListener> listeners;
 	private User currentUser;
+	private String currentStart;
+	private String currentEnd;
+	private String currentRoomPref;
 	
 	public HotelModel(TreeMap<String, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
 	{
@@ -31,6 +34,21 @@ public class HotelModel
 	public User getCurrentUser()
 	{
 		return this.currentUser;
+	}
+	
+	public String getCurrentStart()
+	{
+		return this.currentStart;
+	}
+	
+	public String getCurrentEnd()
+	{
+		return this.currentEnd;
+	}
+	
+	public String getCurrentRoomPref()
+	{
+		return this.currentRoomPref;
 	}
 	
 	public void attachListener(ChangeListener c)
@@ -61,6 +79,36 @@ public class HotelModel
 	public void updateCurrentUser(User newCurrentUser)
 	{
 		this.currentUser = newCurrentUser;
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
+	}
+	
+	public void updateCurrentStart(String startDate)
+	{
+		this.currentStart = startDate;
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
+	}
+	
+	public void updateCurrentEnd(String endDate)
+	{
+		this.currentEnd = endDate;
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
+	}
+	
+	public void updateCurrentRoomPref(String roomPref)
+	{
+		this.currentRoomPref = roomPref;
 		ChangeEvent event = new ChangeEvent(this);
 		for (ChangeListener listen : listeners)
 		{
