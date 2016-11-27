@@ -40,7 +40,7 @@ public class GuestResHandler
 					@Override
 					public void actionPerformed(ActionEvent arg0)
 					{
-						//TODO: Create GuestCheckFrame, pass on model
+						GuestCheckFrame newGCF = new GuestCheckFrame(model);
 						frame.dispose();
 					}
 			
