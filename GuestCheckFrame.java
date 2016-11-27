@@ -86,8 +86,6 @@ public class GuestCheckFrame
 			
 				});
 		
-		JLabel blank2 = new JLabel(" ");
-		checkPanel.add(blank);
 		
 		frame.add(checkPanel, BorderLayout.CENTER);
 		
