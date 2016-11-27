@@ -66,7 +66,10 @@ public class GuestCheckFrame
 					@Override
 					public void actionPerformed(ActionEvent arg0)
 					{
-						
+						model.updateCurrentStart(inTextField.getText());
+						model.updateCurrentEnd(outTextField.getText());
+						model.updateCurrentRoomPref("economy");
+						GuestViewFrame newGVF = new GuestViewFrame(model);
 						frame.dispose();
 					}
 			
@@ -80,7 +83,10 @@ public class GuestCheckFrame
 					@Override
 					public void actionPerformed(ActionEvent arg0)
 					{
-						
+						model.updateCurrentStart(inTextField.getText());
+						model.updateCurrentEnd(outTextField.getText());
+						model.updateCurrentRoomPref("luxury");
+						GuestViewFrame newGVF = new GuestViewFrame(model);
 						frame.dispose();
 					}
 			
