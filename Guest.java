@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * 
  * @author Alex Liu
  */
-public class Guest extends User implements Serializable
+public class Guest extends User 
 {
 	private ArrayList<Reservation> reservations;
 
