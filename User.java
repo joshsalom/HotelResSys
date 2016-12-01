@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * Represents a user account - either guest or manager
  * 
  * @author Alex Liu
  */
-public class User
+public abstract class User implements Serializable
 {
 	private String userID;
 	private String userName;
@@ -33,6 +35,19 @@ public class User
 	{
 		return this.userID;
 	}
+	
+	//two users equal if they have the same username 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) // reflexive
+			return true;
+		if (o == null) // test for null
+			return false;
+		if (getClass() != o.getClass()) // symmetry
+			return false;
+		User other = (User) o;
+		return other.userID.equals(userID);
+	}
 
 	@Override
 	public String toString()
@@ -49,5 +64,6 @@ public class User
 	{
 		return false;
 	}
+	
 
 }
