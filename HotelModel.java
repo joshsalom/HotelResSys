@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class HotelModel
+public class HotelModel implements Serializable
 {
 	private TreeMap<String, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
 	private ArrayList<User> userList;

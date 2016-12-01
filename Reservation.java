@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Reservation
+public class Reservation implements Serializable
 {
 	private String roomNumber;
 	private String startDate;

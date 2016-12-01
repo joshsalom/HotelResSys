@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -5,7 +6,7 @@ import java.util.ArrayList;
  * 
  * @author Alex Liu
  */
-public class Guest extends User
+public class Guest extends User implements Serializable
 {
 	private ArrayList<Reservation> reservations;
 
