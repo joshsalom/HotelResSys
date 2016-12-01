@@ -2,12 +2,16 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -58,17 +62,24 @@ public class ManagerLoginFrame
 					{
 						String input = signInTextField.getText();
 						ArrayList<User> userList = model.getUserList();
+						Manager manager = null;
+						//check to see if guest with inputted user ID exists
+						//if user does exist, then updates model, creates new GuestResHandler and closes frame
 						for (User thisUser : userList)
 						{
 							if (thisUser.isManager() && thisUser.getID().equals(input))
 							{
-								//TODO: Update current user; Create ManagerResHandler and pass on model to this class; dispose this frame
+								manager = (Manager) thisUser;
+								model.updateCurrentUser(manager);
+								//TODO: pass model onto ManagerResHandler
+								frame.dispose();
 							}
 						}
-						signInPrompt2.setText("Error: Manager account does not exist");
-						
-					}
+						//displays error message if no such user exists
+						if(manager == null)
+							signInPrompt2.setText("Error: Manager account does not exist");
 			
+					}
 				});
 		
 		
@@ -107,12 +118,23 @@ public class ManagerLoginFrame
 					{
 						String newUserID = signUpTextField1.getText();
 						String newUserName = signUpTextField2.getText();
-						//We can check if user exists, but we'll forget about it for now
+						//check to see if user exists
+						ArrayList<User> users = model.getUserList();
 						Manager newManager = new Manager(newUserID, newUserName);
-						model.updateUserList(newManager);
-						model.updateCurrentUser(newManager);
-						//TODO: create ManagerResHandler and pass on model; dispose this frame
-						frame.dispose();
+						//stores new manager information only if no manager or guest account with the same ID number exists
+						if(!users.contains(newManager) && !users.contains(new Guest(newUserID, newUserName))){
+							model.updateUserList(newManager);
+							model.updateCurrentUser(newManager);
+							//save new manager
+							try {
+								ManagerLoginFrame.this.storeHotelInformation();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							//TODO: Pass hotelModel into ManagerResHandler
+							frame.dispose();
+						}else//user exists: display error message
+							JOptionPane.showMessageDialog(null, "This username is already taken: Please choose another one.");
 					}
 			
 				});
@@ -124,5 +146,12 @@ public class ManagerLoginFrame
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	// will need to save hotel information after reservations are made
+	public void storeHotelInformation() throws IOException {
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hotelInfo.data"));
+		out.writeObject(model);
+		out.close();
 	}
 }

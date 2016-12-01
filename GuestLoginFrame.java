@@ -8,8 +8,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.io.*;
 
 public class GuestLoginFrame
 {
@@ -58,15 +60,22 @@ public class GuestLoginFrame
 					{
 						String input = signInTextField.getText();
 						ArrayList<User> userList = model.getUserList();
+						Guest guest = null;
+						//check to see if guest with inputted user ID exists
+						//if user does exist, then updates model, creates new GuestResHandler and closes frame
 						for (User thisUser : userList)
 						{
 							if (!thisUser.isManager() && thisUser.getID().equals(input))
 							{
-								//TODO: Update current user; Create GuestResHandler and pass on model to this class; dispose this frame
+								guest = (Guest) thisUser;
+								model.updateCurrentUser(guest);
+								GuestResHandler newGRH = new GuestResHandler(model);
+								frame.dispose();
 							}
 						}
-						signInPrompt2.setText("Error: Guest account does not exist");
-						
+						//displays error message if no such user exists
+						if(guest == null)
+							signInPrompt2.setText("Error: Guest account does not exist");
 					}
 			
 				});
@@ -107,13 +116,23 @@ public class GuestLoginFrame
 					{
 						String newUserID = signUpTextField1.getText();
 						String newUserName = signUpTextField2.getText();
-						//We can check if user exists, but we'll forget about it for now
-						Guest newGuest = new Guest(newUserID, newUserName);
-						model.updateUserList(newGuest);
-						model.updateCurrentUser(newGuest);
-						GuestResHandler newGRH = new GuestResHandler(model);
-						//TODO: create GuestResHandler and pass on model; dispose this frame
-						frame.dispose();
+						//check to see if user exists
+						ArrayList<User> users = model.getUserList();
+						Guest guest = new Guest(newUserID, newUserName);
+						if(!users.contains(guest) && !users.contains(new Manager(newUserID, newUserName))){
+							model.updateUserList(guest);
+							model.updateCurrentUser(guest);
+							//save new user
+							try {
+								GuestLoginFrame.this.storeHotelInformation();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							GuestResHandler newGRH = new GuestResHandler(model);
+							frame.dispose();
+						}else//user exists: display error message
+							JOptionPane.showMessageDialog(null, "This username is already taken: Please choose another one.");
+				
 					}
 			
 				});
@@ -125,5 +144,13 @@ public class GuestLoginFrame
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	//will need to save hotel information after reservations are made
+	public void storeHotelInformation() throws IOException {
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hotelInfo.data"));
+		out.writeObject(model);
+		out.close(); 
+		
 	}
 }
