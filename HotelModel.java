@@ -7,22 +7,22 @@ import javax.swing.event.ChangeListener;
 
 public class HotelModel implements Serializable
 {
-	private TreeMap<String, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
+	private TreeMap<Room, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
 	private ArrayList<User> userList;
 	private ArrayList<ChangeListener> listeners;
 	private User currentUser;
 	private String currentStart;
 	private String currentEnd;
-	private String currentRoomPref;
+	private RoomType currentRoomPref;
 	
-	public HotelModel(TreeMap<String, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
+	public HotelModel(TreeMap<Room, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
 	{
 		this.roomMap = roomMap;
 		this.userList = userList;
 		listeners = new ArrayList<ChangeListener>();
 	}
 	
-	public TreeMap<String, ArrayList<Reservation>> getRoomMap()
+	public TreeMap<Room, ArrayList<Reservation>> getRoomMap()
 	{
 		return this.roomMap;
 	}
@@ -47,7 +47,7 @@ public class HotelModel implements Serializable
 		return this.currentEnd;
 	}
 	
-	public String getCurrentRoomPref()
+	public RoomType getCurrentRoomPref()
 	{
 		return this.currentRoomPref;
 	}
@@ -107,7 +107,8 @@ public class HotelModel implements Serializable
 		}
 	}
 	
-	public void updateCurrentRoomPref(String roomPref)
+	
+	public void updateCurrentRoomPref(RoomType roomPref)
 	{
 		this.currentRoomPref = roomPref;
 		ChangeEvent event = new ChangeEvent(this);
@@ -115,5 +116,15 @@ public class HotelModel implements Serializable
 		{
 			listen.stateChanged(event);
 		}
+	}
+	
+
+	//used during the first run only
+	public void addRooms(){
+		for(int x = 1; x <= 10; x++)
+			roomMap.put(new Room(x, RoomType.ECONOMY), new ArrayList<Reservation>());
+		for(int x = 11; x <= 20; x++)
+			roomMap.put(new Room(x, RoomType.LUXURY), new ArrayList<Reservation>());
+			
 	}
 }
