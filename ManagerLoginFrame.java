@@ -72,7 +72,6 @@ public class ManagerLoginFrame
 								manager = (Manager) thisUser;
 								model.updateCurrentUser(manager);
 								ManagerResHandler newMRH = new ManagerResHandler(model);
-								//TODO: pass model onto ManagerResHandler
 								frame.dispose();
 							}
 						}
@@ -132,7 +131,7 @@ public class ManagerLoginFrame
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
-							//TODO: Pass hotelModel into ManagerResHandler
+							ManagerResHandler newMRH = new ManagerResHandler(model);
 							frame.dispose();
 						}else//user exists: display error message
 							JOptionPane.showMessageDialog(null, "This username is already taken: Please choose another one.");
