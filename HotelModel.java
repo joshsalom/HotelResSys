@@ -1,7 +1,10 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.TreeMap;
+import java.util.GregorianCalendar;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -61,7 +64,6 @@ public class HotelModel implements Serializable
 	
 	public void updateRoomMap()
 	{
-		//TODO
 		ChangeEvent event = new ChangeEvent(this);
 		for (ChangeListener listen : listeners)
 		{
@@ -128,5 +130,12 @@ public class HotelModel implements Serializable
 		for(int x = 11; x <= 20; x++)
 			roomMap.put(new Room(x, RoomType.LUXURY), new ArrayList<Reservation>());
 			
+	}
+	
+	public void storeHotelInformation() throws IOException {
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hotelInfo.data"));
+		out.writeObject(this);
+		out.close(); 
+		
 	}
 }
