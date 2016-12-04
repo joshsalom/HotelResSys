@@ -71,6 +71,7 @@ public class ManagerLoginFrame
 							{
 								manager = (Manager) thisUser;
 								model.updateCurrentUser(manager);
+								ManagerResHandler newMRH = new ManagerResHandler(model);
 								//TODO: pass model onto ManagerResHandler
 								frame.dispose();
 							}

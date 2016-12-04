@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.TreeMap;
 
 import javax.swing.event.ChangeEvent;
@@ -14,6 +15,7 @@ public class HotelModel implements Serializable
 	private String currentStart;
 	private String currentEnd;
 	private RoomType currentRoomPref;
+	GregorianCalendar calendar = new GregorianCalendar();
 	
 	public HotelModel(TreeMap<Room, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
 	{
