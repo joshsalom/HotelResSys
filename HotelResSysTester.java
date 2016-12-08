@@ -14,6 +14,7 @@ public class HotelResSysTester
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("hotelInfo.data"));
 			model = (HotelModel) in.readObject();
 			in.close(); 
+			model.resetListeners();
 		}
 		//first run - no users yet; create new hotelModel
 		catch(FileNotFoundException e){ 
@@ -24,8 +25,6 @@ public class HotelResSysTester
 			
 		}
 		AccountTypeFrame newATF = new AccountTypeFrame(model);
-		
-		//System.out.println(model.getRoomMap().get(new Room(1, RoomType.ECONOMY)));
 	
 	}
 }

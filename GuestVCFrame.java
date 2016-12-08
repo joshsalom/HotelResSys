@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class GuestVCFrame
 {
@@ -56,16 +58,20 @@ public class GuestVCFrame
 				//check that number entered is a valid reservation number
 				if(reservationNumber > - 1 && reservationNumber < reservations.size()){
 					Reservation r = reservations.remove(reservationNumber);
+					//cancel reservation in user
 					Guest guest = (Guest)model.getCurrentUser();
 					guest.cancelReservation(r);
+					//cancel reservation in hotelModel
+					model.cancelReservation(r);
+					JOptionPane.showMessageDialog(null, "Reservation canceled");
 					//serialize data
-					try {
+					/*try {
 						JOptionPane.showMessageDialog(null, "Reservation canceled");
 						model.storeHotelInformation();
 						updateRoomView();
 					} catch (IOException e1) {
 						e1.printStackTrace();
-					}
+					}*/
 				}	
 				else
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number");
@@ -73,6 +79,23 @@ public class GuestVCFrame
 			}
 		});
 		buttonPanel.add(cancelButton);
+		
+		model.attachListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				//Testing purposes
+				try {
+					model.storeHotelInformation();
+					updateRoomView();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				updateRoomView();
+				frame.repaint();
+			}
+			
+		});
 		
 		JLabel blank = new JLabel(" ");
 		
@@ -107,7 +130,7 @@ public class GuestVCFrame
 		String s = "Current Reservations: \n\n";
 		int count = 0;
 		for(Reservation r: reservations)
-			s += "Reservation Number:" + count++ + "\n" + r.toString() + "\n";
+			s += "Reservation Number: " + count++ + "\n" + r.toString() + "\n";
 		roomView.setText(s);
 		
 	}

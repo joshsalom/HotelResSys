@@ -55,7 +55,7 @@ public class AccountTypeFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						ManagerLoginFrame managerLoginFrame = new ManagerLoginFrame(model);
+						ManagerResHandler managerResHandler = new ManagerResHandler(model);
 						frame.dispose();
 					}
 			
@@ -70,4 +70,5 @@ public class AccountTypeFrame
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 }

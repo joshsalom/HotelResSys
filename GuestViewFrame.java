@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class GuestViewFrame
 {
@@ -56,25 +58,11 @@ public class GuestViewFrame
 				}
 				//check that number entered is an available room
 				Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser());
-				boolean enteredValidRoom = false;
-				for(Room r: validRooms)
-					if(r.getRoomNumber() == roomNumber){
-						reservation.setRoom(r);
-						model.getRoomMap().get(r).add(reservation);
-						Guest g = (Guest)model.getCurrentUser();
-						g.addReservation(reservation);
-						enteredValidRoom = true;
-					}
-				if(!enteredValidRoom)
+				if(model.addReservation(reservation, validRooms, roomNumber))
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number");
 				else
-					try {
-						JOptionPane.showMessageDialog(null, "Reservation made");
-						model.storeHotelInformation();
-						updateRoomView();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+					JOptionPane.showMessageDialog(null, "Reservation made");
+						
 			}
 				
 			
@@ -104,6 +92,21 @@ public class GuestViewFrame
 		contentPanel.add(buttonPanel);
 		
 		frame.add(contentPanel, BorderLayout.EAST);
+		
+		model.attachListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				try {
+					model.storeHotelInformation();
+					updateRoomView();
+					frame.repaint();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		});
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
