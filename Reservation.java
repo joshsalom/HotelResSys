@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 
 public class Reservation implements Serializable
 {
+
 	private Room room;
 	private String startDate;
 	private String endDate;
@@ -43,6 +44,18 @@ public class Reservation implements Serializable
 	public User getUser()
 	{
 		return user;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		return room.equals(other.room) && startDate.equals(other.startDate) && endDate.equals(other.endDate);
 	}
 	
 	@Override
@@ -91,5 +104,5 @@ public class Reservation implements Serializable
 	public Date getEndDay(){
 		return end;
 	}
-	
+
 }
