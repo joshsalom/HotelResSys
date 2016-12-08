@@ -13,7 +13,7 @@ public class HotelModel implements Serializable
 {
 	private TreeMap<Room, ArrayList<Reservation>> roomMap; //remember Res for start/end dates
 	private ArrayList<User> userList;
-	private ArrayList<ChangeListener> listeners;
+	private transient ArrayList<ChangeListener> listeners;
 	private User currentUser;
 	private String currentStart;
 	private String currentEnd;
@@ -25,6 +25,33 @@ public class HotelModel implements Serializable
 		this.roomMap = roomMap;
 		this.userList = userList;
 		listeners = new ArrayList<ChangeListener>();
+	}
+	
+	public boolean addReservation(Reservation reservation, ArrayList<Room> validRooms, int roomNumber){
+		boolean enteredValidRoom = true;
+		for(Room r: validRooms)
+			if(r.getRoomNumber() == roomNumber){
+				reservation.setRoom(r);
+				this.getRoomMap().get(r).add(reservation);
+				Guest g = (Guest)this.getCurrentUser();
+				g.addReservation(reservation);
+				enteredValidRoom = false;
+			}
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
+		return enteredValidRoom;
+	}
+	
+	public void cancelReservation(Reservation reservation){
+		roomMap.get(reservation.getRoom()).remove(reservation);
+		ChangeEvent event = new ChangeEvent(this);
+		for (ChangeListener listen : listeners)
+		{
+			listen.stateChanged(event);
+		}
 	}
 	
 	public TreeMap<Room, ArrayList<Reservation>> getRoomMap()
@@ -79,6 +106,10 @@ public class HotelModel implements Serializable
 		{
 			listen.stateChanged(event);
 		}
+	}
+	
+	public void resetListeners(){
+		listeners = new ArrayList<ChangeListener>();
 	}
 	
 	public void updateCurrentUser(User newCurrentUser)
