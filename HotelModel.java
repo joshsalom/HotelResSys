@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+@SuppressWarnings("serial")
 public class HotelModel implements Serializable
 {
 	private TreeMap<Room, ArrayList<Reservation>> roomMap; //remember Res for start/end dates

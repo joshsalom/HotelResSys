@@ -83,6 +83,15 @@ public class GuestViewFrame
 		buttonPanel.add(moreButton);
 		
 		JButton doneButton = new JButton("Done");
+		doneButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				/* output receipt*/
+				new printReceipt(model);
+				frame.dispose();
+			}
+		});
 		buttonPanel.add(doneButton);
 		
 		JLabel blank = new JLabel(" ");

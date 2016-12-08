@@ -3,6 +3,7 @@
  * 
  * @author Alex Liu
  */
+@SuppressWarnings("serial")
 public class Manager extends User
 {
 

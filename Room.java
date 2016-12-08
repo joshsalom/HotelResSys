@@ -4,6 +4,7 @@ enum RoomType{
 	ECONOMY, LUXURY;
 }
 
+@SuppressWarnings("serial")
 public class Room implements Comparable<Room>, Serializable {
 	private RoomType roomType;
 	private int roomNumber;

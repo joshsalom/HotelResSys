@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -10,11 +9,8 @@ import javax.swing.table.*;
  *
  */
 public class ManagerViewFrame {
-
-	private HotelModel model;
 	
 	public ManagerViewFrame(HotelModel hotelModel) {
-		this.model = hotelModel;
 		JFrame frame = new JFrame();
 		frame.setLayout(new BorderLayout());
 
@@ -127,7 +123,8 @@ public class ManagerViewFrame {
 	/**
 	 * Panel that represents a month view of a calendar
 	 */
-	 class CalendarPanel extends JPanel {
+	 @SuppressWarnings("serial")
+	class CalendarPanel extends JPanel {
 
 		private GregorianCalendar cal;
 		private final int NUM_COLS = 7;

@@ -1,9 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 
 
@@ -17,6 +15,7 @@ public class ManagerRoomViewFrame
 	private int selectedRoomNumber;
 	private final int FRAME_HEIGHT = 340;
 	
+	@SuppressWarnings("serial")
 	public ManagerRoomViewFrame(HotelModel hotelModel)
 	{
 		selectedRoomNumber = 0;

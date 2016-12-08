@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+@SuppressWarnings("serial")
 public class Reservation implements Serializable
 {
 
