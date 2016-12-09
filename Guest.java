@@ -1,4 +1,3 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -6,6 +5,7 @@ import java.util.ArrayList;
  * 
  * @author Alex Liu
  */
+@SuppressWarnings("serial")
 public class Guest extends User 
 {
 	private ArrayList<Reservation> reservations;

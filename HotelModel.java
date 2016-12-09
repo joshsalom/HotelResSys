@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+
 /**
  * The model that stores information about users, hotel rooms, and hotel reservations.
  */

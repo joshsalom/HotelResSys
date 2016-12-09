@@ -63,7 +63,7 @@ public class ManagerLoginFrame
 						String input = signInTextField.getText();
 						ArrayList<User> userList = model.getUserList();
 						Manager manager = null;
-						//check to see if guest with inputted user ID exists
+						//check to see if guest with inputed user ID exists
 						//if user does exist, then updates model, creates new GuestResHandler and closes frame
 						for (User thisUser : userList)
 						{

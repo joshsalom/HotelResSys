@@ -7,9 +7,11 @@ enum RoomType{
 	ECONOMY, LUXURY;
 }
 
+
 /**
  * Represents a room in the hotel
  */
+
 public class Room implements Comparable<Room>, Serializable {
 	private RoomType roomType;
 	private int roomNumber;

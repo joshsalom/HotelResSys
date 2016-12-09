@@ -14,9 +14,8 @@ public class ManagerViewFrame {
 	private HotelModel model;
 	private JTextArea roomDisplayArea;
 	private CalendarPanel calendarPanel;
-	
+
 	public ManagerViewFrame(HotelModel hotelModel) {
-		this.model = hotelModel;
 		JFrame frame = new JFrame();
 		frame.setSize(400, 400);
 		frame.setLayout(new BorderLayout());
@@ -174,7 +173,8 @@ public class ManagerViewFrame {
 	/**
 	 * Panel that represents a month view of a calendar
 	 */
-	 class CalendarPanel extends JPanel {
+	 @SuppressWarnings("serial")
+	class CalendarPanel extends JPanel {
 
 		private GregorianCalendar cal;
 		private final int NUM_COLS = 7;

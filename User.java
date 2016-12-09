@@ -5,6 +5,7 @@ import java.io.Serializable;
  * 
  * @author Alex Liu
  */
+@SuppressWarnings("serial")
 public abstract class User implements Serializable
 {
 	private String userID;
