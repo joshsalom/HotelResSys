@@ -6,7 +6,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
 
-
+/**
+ * Frame that represents the room view for a manager.
+ */
 public class ManagerRoomViewFrame
 {
 	private HotelModel model;
@@ -83,10 +85,11 @@ public class ManagerRoomViewFrame
 		frame.add(scroller, BorderLayout.CENTER);
 		
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
+	/**
+	 * Initializes the table to the correct format
+	 */
 	private void initializeTable(){
 		table.setGridColor(Color.BLACK);
 		table.setShowGrid(true);
@@ -103,6 +106,10 @@ public class ManagerRoomViewFrame
 				tableModel.setValueAt(new Integer(num++), row, col);
 	}
 
+	/**
+	 * Updates the room view with the selected room
+	 * @param r Room that is selected
+	 */
 	private void updateRoomView(Room r) {
 		//room information
 		String s = "Room number: " + r.getRoomNumber() + "\n"
@@ -118,8 +125,7 @@ public class ManagerRoomViewFrame
 					return o1.getStartDay().compareTo(o2.getStartDay());
 				else if(o1.getStartDate().compareTo(o2.getStartDate()) != 0)
 					return o1.getEndDay().compareTo(o2.getEndDay());
-				return o1.getRoom().getRoomNumber() - o2.getRoom().getRoomNumber();
-				
+				return o1.getRoom().getRoomNumber() - o2.getRoom().getRoomNumber();	
 			}
 			
 		};

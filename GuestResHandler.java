@@ -58,12 +58,28 @@ public class GuestResHandler
 					}
 			
 				});
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.updateCurrentUser(null);
+				AccountTypeFrame accountTypeFrame = new AccountTypeFrame(model);
+				frame.dispose();
+				
+			}
+				
+		});
+		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.add(guestButton);
-		buttonPanel.add(managerButton);
-		frame.add(buttonPanel, BorderLayout.SOUTH);
+		buttonPanel.setLayout(new BorderLayout());
+		JPanel topButtons = new JPanel();
+		topButtons.add(guestButton);
+		topButtons.add(managerButton);
+		buttonPanel.add(topButtons, BorderLayout.CENTER);
+		buttonPanel.add(backButton, BorderLayout.SOUTH);
+		frame.add(buttonPanel, BorderLayout.CENTER);
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

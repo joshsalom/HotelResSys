@@ -2,9 +2,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**
+ * Represents a hotel reservation 
+ */
 public class Reservation implements Serializable
 {
-
 	private Room room;
 	private String startDate;
 	private String endDate;
@@ -22,25 +24,47 @@ public class Reservation implements Serializable
 		end = convertDate(endDate);
 	}
 	
+	/**
+	 * Sets the room of the reservation
+	 * Precondition: Room is a valid room in the hotel
+	 * Postcondition: Reservation is changed to the given room
+	 * @param r Room that the reservation is changed to
+	 */
 	public void setRoom(Room r){
 		room = r;
 	}
 	
+	/**
+	 * Returns the room of the reservation
+	 * @return Room of the reservation
+	 */
 	public Room getRoom()
 	{
 		return room;
 	}
 	
+	/**
+	 * Returns the start date of the reservation in string format
+	 * @return Start date of reservation in string format
+	 */
 	public String getStartDate()
 	{
 		return startDate;
 	}
 	
+	/**
+	 * Returns the end date of the reservation in string format
+	 * @return End date of reservation in string format
+	 */
 	public String getEndDate()
 	{
 		return endDate;
 	}
 	
+	/**
+	 * Returns the user who reserved the room
+	 * @return User who made the reservation
+	 */
 	public User getUser()
 	{
 		return user;
@@ -87,6 +111,11 @@ public class Reservation implements Serializable
 		return false;
 	}
 	
+	/**
+	 * Converts a date in string format to a date format
+	 * @param d Date in string format
+	 * @return Date in date format
+	 */
 	private Date convertDate(String d){
 		String[] strings = d.split("/", -1);
 		int[] arr = new int[strings.length];
@@ -97,10 +126,18 @@ public class Reservation implements Serializable
 		return cal.getTime();
 	}
 	
+	/**
+	 * Returns the start date of the reservation in Date format
+	 * @return Start date of the reservation in Date format
+	 */
 	public Date getStartDay(){
 		return start;
 	}
 	
+	/**
+	 * Returns the end date of the reservation in Date format
+	 * @return End date of the reservation in Date format
+	 */
 	public Date getEndDay(){
 		return end;
 	}

@@ -119,7 +119,7 @@ public class GuestLoginFrame
 						//check to see if user exists
 						ArrayList<User> users = model.getUserList();
 						Guest guest = new Guest(newUserID, newUserName);
-						if(!users.contains(guest) && !users.contains(new Manager(newUserID, newUserName))){
+						if(!users.contains(guest)){
 							model.updateUserList(guest);
 							model.updateCurrentUser(guest);
 							//save new user

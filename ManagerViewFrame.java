@@ -1,21 +1,24 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
 /**
+ * The frame that shows the manager view of room information for a given date
  * @author Harita
- *
  */
 public class ManagerViewFrame {
 
 	private HotelModel model;
+	private JTextArea roomDisplayArea;
+	private CalendarPanel calendarPanel;
 	
 	public ManagerViewFrame(HotelModel hotelModel) {
 		this.model = hotelModel;
 		JFrame frame = new JFrame();
+		frame.setSize(400, 400);
 		frame.setLayout(new BorderLayout());
 
 		// North Panel
@@ -24,19 +27,16 @@ public class ManagerViewFrame {
 		npanel.add(nlabel);
 
 		// East Panel
-		JTextPane roomDisplayPane = new JTextPane();
-		roomDisplayPane.setPreferredSize(new Dimension(300, 128));
-		roomDisplayPane.setEditable(false);
+		roomDisplayArea = new JTextArea(10, 10);
+		roomDisplayArea.setText("Room information:\n\nAvailable Rooms:\n\nOccupied Rooms");
+		roomDisplayArea.setEditable(false);
+		roomDisplayArea.setLineWrap(true);
+		roomDisplayArea.setWrapStyleWord(true);
+		JScrollPane scroller = new JScrollPane(roomDisplayArea);
+		scroller.setPreferredSize(new Dimension(300, 128));
 		
-		JPanel epanel = new JPanel();
-		JScrollPane dayScrollPane = new JScrollPane(roomDisplayPane);
-		epanel.add(dayScrollPane);
-		
-		// West Panel		
-		JPanel wpanel = new JPanel();
-		wpanel.setLayout(new BorderLayout());
-		 
-		CalendarPanel calendarPanel = new CalendarPanel();
+		//West Panel
+		calendarPanel = new CalendarPanel();
 		calendarPanel.attachListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
@@ -44,8 +44,12 @@ public class ManagerViewFrame {
 				int row = target.getSelectedRow();
 				int column = target.getSelectedColumn();
 				if (target.getModel().getValueAt(row, column) != null && row != 0) {
+					//repaint calendar
 					calendarPanel.setCalendarDay((int) target.getModel().getValueAt(row, column));
 					calendarPanel.repaint();
+					//repaint text area
+					ManagerViewFrame.this.updateRoomText();
+					
 				}
 
 			}
@@ -108,20 +112,63 @@ public class ManagerViewFrame {
 		calButtonPanel.add(topButtons, BorderLayout.NORTH);
 		calButtonPanel.add(bottomButtons, BorderLayout.SOUTH);
 		
-		wpanel.add(calendarPanel, BorderLayout.CENTER);
-		
 		// South Panel
 		JPanel spanel = new JPanel();
-		spanel.add(calButtonPanel, BorderLayout.SOUTH);
+		spanel.setLayout(new BorderLayout());
+		spanel.add(calButtonPanel, BorderLayout.CENTER);
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ManagerResHandler managerHandler = new ManagerResHandler(model);
+				frame.dispose();
+				
+			}
+				
+		});
+		spanel.add(backButton, BorderLayout.SOUTH);
+		
 		frame.add(npanel, BorderLayout.NORTH);
-		frame.add(wpanel, BorderLayout.WEST);
-		frame.add(epanel, BorderLayout.CENTER);
+		frame.add(calendarPanel, BorderLayout.WEST);
+		frame.add(scroller, BorderLayout.CENTER);
 		frame.add(spanel, BorderLayout.SOUTH);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);		
 		
+	}
+	
+	/**
+	 * Updates the room information for a given date
+	 */
+	private void updateRoomText(){
+		ArrayList<Integer> availableRooms = new ArrayList<Integer>();
+		ArrayList<Integer> occupiedRooms = new ArrayList<Integer>();
+		String s = "Room Information:\n\n";
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		GregorianCalendar cal = (GregorianCalendar) calendarPanel.getCalendar().clone();
+		Date start = cal.getTime();
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		Date end = cal.getTime();
+		Reservation reservation = new Reservation(null,dateFormatter.format(start), dateFormatter.format(end), null);
+		boolean addRoom = true;
+		for(Room room: model.getRoomMap().keySet()){
+			for(Reservation r: model.getRoomMap().get(room))
+				if(reservation.checkHasConflict(r))
+					addRoom = false;
+			if(addRoom)
+				availableRooms.add(room.getRoomNumber());
+			else
+				occupiedRooms.add(room.getRoomNumber());
+			addRoom = true;
+		}
+		s += "Available Rooms:\n\n";
+		for(Integer i: availableRooms)
+			s += i + " ";
+		s += "\n\nOccupied Rooms:\n\n";
+		for(Integer i: occupiedRooms)
+			s += i + " ";
+		roomDisplayArea.setText(s);
 	}
 	
 	/**
@@ -140,7 +187,7 @@ public class ManagerViewFrame {
 		private final String[] DAYS = { "S", "M", "T", "W", "T", "F", "S" };
 		private int currentDayCol;
 
-		CalendarPanel() {
+		public CalendarPanel() {
 			cal = new GregorianCalendar();
 			table = new JTable(NUM_ROWS, NUM_COLS) {
 				@Override

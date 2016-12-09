@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Frame that shows the options for a manager - load, view, quit, save. 
+ */
 public class ManagerResHandler{
 	
 	private HotelModel model;
@@ -59,18 +62,30 @@ public class ManagerResHandler{
 				});
 
 		JButton viewButton = new JButton("View Information");
-		viewButton.addActionListener(new ActionListener()
-				{
+		viewButton.addActionListener(new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e)
-					{
-						ManagerViewFrame newViewCancelFrame = new ManagerViewFrame(model);
-						ManagerRoomViewFrame roomViewFrame = new ManagerRoomViewFrame(model);
-						frame.dispose();
-					}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ManagerViewFrame newViewCancelFrame = new ManagerViewFrame(model);
+				ManagerRoomViewFrame roomViewFrame = new ManagerRoomViewFrame(model);
+				frame.dispose();
+			}
+
+		});
+		
+		JButton saveButton = new JButton("Save");
+		saveButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					model.storeHotelInformation();
+				} catch (IOException e1) {
+				}
+				
+			}
 			
-				});
+		});
 		
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener(){
@@ -86,11 +101,27 @@ public class ManagerResHandler{
 			}
 			
 		});
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AccountTypeFrame accountTypeFrame = new AccountTypeFrame(model);
+				frame.dispose();
+				
+			}
+				
+		});
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.add(loadButton);
-		buttonPanel.add(viewButton);
-		buttonPanel.add(quitButton);
+		buttonPanel.setLayout(new BorderLayout());
+		JPanel topPanel = new JPanel();
+		topPanel.add(loadButton);
+		topPanel.add(viewButton);
+		topPanel.add(saveButton);
+		topPanel.add(quitButton);
+		buttonPanel.add(topPanel, BorderLayout.CENTER);
+		buttonPanel.add(backButton, BorderLayout.SOUTH);
+		
 		frame.add(buttonPanel, BorderLayout.SOUTH);
 		
 		frame.pack();

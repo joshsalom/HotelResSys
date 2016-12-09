@@ -85,12 +85,12 @@ public class GuestVCFrame
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				//Testing purposes
-				try {
-					model.storeHotelInformation();
+				//try {
+					//model.storeHotelInformation();
 					updateRoomView();
-				} catch (IOException e1) {
+				/*} catch (IOException e1) {
 					e1.printStackTrace();
-				}
+				}*/
 				updateRoomView();
 				frame.repaint();
 			}
@@ -99,9 +99,23 @@ public class GuestVCFrame
 		
 		JLabel blank = new JLabel(" ");
 		
+
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GuestResHandler guestHandler = new GuestResHandler(model);
+				frame.dispose();
+				
+			}
+				
+		});
+		
 		contentPanel.add(blank);
 		contentPanel.add(roomInputPanel);
 		contentPanel.add(buttonPanel);
+		contentPanel.add(backButton);
 		
 		frame.add(contentPanel, BorderLayout.EAST);
 		
