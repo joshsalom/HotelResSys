@@ -16,9 +16,11 @@ public class SimpleReceipt implements ReceiptFormat {
 		reservationData += '\n';
 		int total = 0;
 		for (Reservation rsvtion: reservationList) {
-			reservationData += rsvtion.toString();
-			reservationData += '\n';
-			total += rsvtion.getRoom().getRoomPrice();
+			if (rsvtion.getTransactionID() == model.getTranscationID()) {
+				reservationData += rsvtion.toString();
+				reservationData += '\n';
+				total += rsvtion.getRoom().getRoomPrice() * (( rsvtion.getEndDay().getTime()- rsvtion.getStartDay().getTime()) / (1000 * 60 * 60 * 24));
+			}
 		}
 		return reservationData += "Total amount due: " + total;
 	}

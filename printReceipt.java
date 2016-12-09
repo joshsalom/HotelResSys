@@ -50,11 +50,12 @@ public class printReceipt {
 		final JTextArea textArea = new JTextArea();
 		sPanel.add(textArea, BorderLayout.CENTER);
 
-		JButton closeButton = new JButton("close");
+		JButton closeButton = new JButton("Back");
 		sPanel.add(closeButton, BorderLayout.SOUTH);
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
+				GuestViewFrame newGVF = new GuestViewFrame(model);
 				frame.dispose();
 			}
 		});

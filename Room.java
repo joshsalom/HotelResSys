@@ -12,6 +12,7 @@ enum RoomType{
  * Represents a room in the hotel
  */
 
+@SuppressWarnings("serial")
 public class Room implements Comparable<Room>, Serializable {
 	private RoomType roomType;
 	private int roomNumber;

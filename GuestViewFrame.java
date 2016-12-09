@@ -57,7 +57,7 @@ public class GuestViewFrame
 					return;
 				}
 				//check that number entered is an available room
-				Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser());
+				Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser(), model.getTranscationID());
 				if(model.addReservation(reservation, validRooms, roomNumber))
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number");
 				else
@@ -136,7 +136,7 @@ public class GuestViewFrame
 	
 	public void updateRoomView(){
 		String rooms = "Available Rooms " + model.getCurrentStart() + "-" + model.getCurrentEnd() + "\n\n";
-		Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser());
+		Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser(), model.getTranscationID());
 		ArrayList<Reservation> reservations = null;
 		validRooms = new ArrayList<Room>();
 		boolean addRoom = true;

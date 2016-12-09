@@ -22,6 +22,7 @@ public class HotelModel implements Serializable
 	private String currentStart;
 	private String currentEnd;
 	private RoomType currentRoomPref;
+	private int transcationID;
 	GregorianCalendar calendar = new GregorianCalendar();
 	
 	public HotelModel(TreeMap<Room, ArrayList<Reservation>> roomMap, ArrayList<User> userList)
@@ -212,5 +213,19 @@ public class HotelModel implements Serializable
 		out.writeObject(this);
 		out.close(); 
 		
+	}
+
+	/**
+	 * @return the transcationID
+	 */
+	public int getTranscationID() {
+		return transcationID;
+	}
+
+	/**
+	 * @param transcationID the transcationID to set
+	 */
+	public void setTranscationID(int transcationID) {
+		this.transcationID = transcationID;
 	}
 }

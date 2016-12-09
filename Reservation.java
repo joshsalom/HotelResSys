@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 /**
  * Represents a hotel reservation 
  */
+@SuppressWarnings("serial")
 public class Reservation implements Serializable
 {
 	private Room room;
@@ -14,13 +15,15 @@ public class Reservation implements Serializable
 	private User user;
 	private Date start; 
 	private Date end;
+	private int transactionID;
 	
-	public Reservation(Room r, String startDate, String endDate, User theUser)
+	public Reservation(Room r, String startDate, String endDate, User theUser, int transactionID)
 	{
 		this.room = r;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.user = theUser;
+		this.setTransactionID(transactionID);
 		start = convertDate(startDate);
 		end = convertDate(endDate);
 	}
@@ -141,6 +144,20 @@ public class Reservation implements Serializable
 	 */
 	public Date getEndDay(){
 		return end;
+	}
+
+	/**
+	 * @return the transactionID
+	 */
+	public int getTransactionID() {
+		return transactionID;
+	}
+
+	/**
+	 * @param transactionID the transactionID to set
+	 */
+	public void setTransactionID(int transactionID) {
+		this.transactionID = transactionID;
 	}
 
 }

@@ -18,7 +18,7 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 		for (Reservation rsvtion: reservationList) {
 			reservationData += rsvtion.toString();
 			reservationData += '\n';
-			total += rsvtion.getRoom().getRoomPrice();
+			total += rsvtion.getRoom().getRoomPrice() * (( rsvtion.getEndDay().getTime()- rsvtion.getStartDay().getTime()) / (1000 * 60 * 60 * 24));
 		}
 		return reservationData += "Total amount due: " + total;
 	}

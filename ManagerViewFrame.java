@@ -149,7 +149,7 @@ public class ManagerViewFrame {
 		Date start = cal.getTime();
 		cal.add(Calendar.DAY_OF_MONTH, 1);
 		Date end = cal.getTime();
-		Reservation reservation = new Reservation(null,dateFormatter.format(start), dateFormatter.format(end), null);
+		Reservation reservation = new Reservation(null,dateFormatter.format(start), dateFormatter.format(end), null, 0);
 		boolean addRoom = true;
 		for(Room room: model.getRoomMap().keySet()){
 			for(Reservation r: model.getRoomMap().get(room))
