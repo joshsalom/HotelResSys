@@ -1,13 +1,23 @@
 import java.util.ArrayList;
-
+/**
+ * ComprehensiveReceipt frame implements ReceiptFormat as part of strategy pattern.
+ * @author
+ *
+ */
 public class ComprehensiveReceipt implements ReceiptFormat {
 
 	private HotelModel model;
-
+	/**
+	 * Constructor of the class.
+	 * @param model
+	 */
 	public ComprehensiveReceipt (HotelModel model) {
 		this.model = model;
 	}
-
+	
+	/**
+	 * Overriding the interface methods in this class.
+	 */
 	@Override
 	public String format() {
 		Guest usr= (Guest) model.getCurrentUser();

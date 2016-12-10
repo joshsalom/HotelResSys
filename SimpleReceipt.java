@@ -1,5 +1,9 @@
 import java.util.ArrayList;
-
+/**
+ * SimpleReceipt frame implements ReceiptFormat as part of strategy pattern.
+ * @author
+ *
+ */
 public class SimpleReceipt implements ReceiptFormat {
 	
 	private HotelModel model;

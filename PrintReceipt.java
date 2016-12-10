@@ -14,12 +14,19 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
+/**
+ * printReceipt implements generic receipt frame, strategy pattern will be used
+ * for Simple and Comprehensive receipts.
+ * @author
+ *
+ */
 public class printReceipt {
-
+	/**
+	 * Constructor for the class.
+	 * @param model Hotel model with global data about the hotel and user
+	 */
 	printReceipt(HotelModel model)
 	{		
-		
 		final JFrame frame = new JFrame();
 		frame.setTitle("Hotel Receipt");
 		frame.setSize(600,400);
@@ -88,7 +95,12 @@ public class printReceipt {
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * 
+	 * @param r object of type interface.
+	 * @return returns the interface method
+	 */
 	private String setFormat(ReceiptFormat r)
 	{
 		return r.format();
