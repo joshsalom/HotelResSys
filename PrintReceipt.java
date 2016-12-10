@@ -14,9 +14,9 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-public class printReceipt {
+public class PrintReceipt {
 
-	printReceipt(HotelModel model)
+	PrintReceipt(HotelModel model)
 	{		
 		final JFrame frame = new JFrame();
 		frame.setTitle("Hotel Receipt");
