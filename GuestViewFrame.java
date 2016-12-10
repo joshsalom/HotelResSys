@@ -91,7 +91,7 @@ public class GuestViewFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				/* output receipt*/
-				new printReceipt(model);
+				new PrintReceipt(model);
 				frame.dispose();
 			}
 		});

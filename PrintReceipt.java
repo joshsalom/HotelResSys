@@ -20,12 +20,12 @@ import javax.swing.border.Border;
  * @author
  *
  */
-public class printReceipt {
+public class PrintReceipt {
 	/**
 	 * Constructor for the class.
 	 * @param model Hotel model with global data about the hotel and user
 	 */
-	printReceipt(HotelModel model)
+	PrintReceipt(HotelModel model)
 	{		
 		final JFrame frame = new JFrame();
 		frame.setTitle("Hotel Receipt");
