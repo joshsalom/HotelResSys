@@ -15,9 +15,9 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-public class PrintReceipt {
+public class printReceipt {
 
-	PrintReceipt(HotelModel model)
+	printReceipt(HotelModel model)
 	{		
 		
 		final JFrame frame = new JFrame();
