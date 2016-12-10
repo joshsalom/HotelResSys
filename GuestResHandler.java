@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Frame that shows all guest actions - Making and viewing/canceling reservations.
+ * @author 
+ */
 public class GuestResHandler
 {
 	private HotelModel model;

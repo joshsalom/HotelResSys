@@ -7,6 +7,10 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Frame that allows user to see and cancel reservations that he has made.
+ * @author 
+ */
 public class GuestVCFrame
 {
 	private HotelModel model;
@@ -64,14 +68,6 @@ public class GuestVCFrame
 					//cancel reservation in hotelModel
 					model.cancelReservation(r);
 					JOptionPane.showMessageDialog(null, "Reservation canceled");
-					//serialize data
-					/*try {
-						JOptionPane.showMessageDialog(null, "Reservation canceled");
-						model.storeHotelInformation();
-						updateRoomView();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}*/
 				}	
 				else
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number");
@@ -84,13 +80,6 @@ public class GuestVCFrame
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				//Testing purposes
-				//try {
-					//model.storeHotelInformation();
-					updateRoomView();
-				/*} catch (IOException e1) {
-					e1.printStackTrace();
-				}*/
 				updateRoomView();
 				frame.repaint();
 			}

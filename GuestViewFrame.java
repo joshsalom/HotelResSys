@@ -8,6 +8,10 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Frame that allows the user to make a reservation. 
+ * @author
+ */
 public class GuestViewFrame
 {
 	private HotelModel model;
@@ -88,7 +92,7 @@ public class GuestViewFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				/* output receipt*/
-				new printReceipt(model);
+				new PrintReceipt(model);
 				frame.dispose();
 			}
 		});
@@ -119,15 +123,10 @@ public class GuestViewFrame
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-			//	try {
-				//	model.storeHotelInformation();
-					updateRoomView();
-					frame.repaint();
-				/*} catch (IOException e1) {
-					e1.printStackTrace();
-				}*/
+				updateRoomView();
+				frame.repaint();
 			}
-			
+
 		});
 		
 		frame.setVisible(true);

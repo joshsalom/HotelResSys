@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Frame that allows the user to select the date for a reservation.
+ * @author
+ */
 public class GuestCheckFrame
 {
 	private HotelModel model;
@@ -115,7 +119,12 @@ public class GuestCheckFrame
 		
 	}
 	
-	//checks that the dates that are entered are valid
+	/**
+	 * Checks to see whether the two dates are valid 
+	 * @param startDate String that represents the starting date
+	 * @param endDate String that represents the end date
+	 * @return True if the two dates are valid
+	 */
 	public boolean checkValidDate(String startDate, String endDate){
 		//check to see if date entered in format MM/DD/YYYY
 		if (startDate.length() != 10 || endDate.length() != 10)
@@ -166,7 +175,12 @@ public class GuestCheckFrame
 		return true;
 	}
 	
-	//helper method
+	/**
+	 * Calculates the number of days between two given dates
+	 * @param d1 First date
+	 * @param d2 Second date
+	 * @return Number of days between the two dates
+	 */
 	private int daysBetween(Date d1, Date d2){
 		return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
  }

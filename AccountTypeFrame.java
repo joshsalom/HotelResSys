@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Frame that allows the user to select whether they are a guest or a manager.
+ * @author
+ */
 public class AccountTypeFrame
 {
 	private HotelModel model;

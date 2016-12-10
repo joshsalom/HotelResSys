@@ -16,6 +16,7 @@ public class ManagerViewFrame {
 	private CalendarPanel calendarPanel;
 
 	public ManagerViewFrame(HotelModel hotelModel) {
+		model = hotelModel;
 		JFrame frame = new JFrame();
 		frame.setSize(400, 400);
 		frame.setLayout(new BorderLayout());

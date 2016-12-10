@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -52,6 +53,7 @@ public class ManagerResHandler{
 							model = (HotelModel) in.readObject();
 							in.close(); 
 							model.resetListeners(); //ArrayList<ChangeListener> is not serializable
+							JOptionPane.showMessageDialog(null, "Information loaded.");
 						}
 						catch(IOException | ClassNotFoundException e){
 							
@@ -79,6 +81,7 @@ public class ManagerResHandler{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					model.storeHotelInformation();
+					JOptionPane.showMessageDialog(null, "Information saved.");
 				} catch (IOException e1) {
 				}
 				

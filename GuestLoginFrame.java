@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.io.*;
 
+/**
+ * Frame that displays the guest login page. 
+ * @author
+ */
 public class GuestLoginFrame
 {
 	private HotelModel model;
@@ -122,12 +126,6 @@ public class GuestLoginFrame
 						if(!users.contains(guest)){
 							model.updateUserList(guest);
 							model.updateCurrentUser(guest);
-							//save new user
-							try {
-								GuestLoginFrame.this.storeHotelInformation();
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
 							GuestResHandler newGRH = new GuestResHandler(model);
 							frame.dispose();
 						}else//user exists: display error message
@@ -146,11 +144,4 @@ public class GuestLoginFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	//will need to save hotel information after reservations are made
-	public void storeHotelInformation() throws IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hotelInfo.data"));
-		out.writeObject(model);
-		out.close(); 
-		
-	}
 }

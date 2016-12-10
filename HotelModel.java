@@ -216,14 +216,16 @@ public class HotelModel implements Serializable
 	}
 
 	/**
-	 * @return the transcationID
+	 * Returns the transaction ID
+	 * @return the transactionID
 	 */
 	public int getTranscationID() {
 		return transcationID;
 	}
 
 	/**
-	 * @param transcationID the transcationID to set
+	 * Sets the transaction ID
+	 * @param transcationID The transcationID to be set
 	 */
 	public void setTranscationID(int transcationID) {
 		this.transcationID = transcationID;
