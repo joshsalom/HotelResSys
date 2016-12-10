@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -18,6 +19,7 @@ public class PrintReceipt {
 
 	PrintReceipt(HotelModel model)
 	{		
+		
 		final JFrame frame = new JFrame();
 		frame.setTitle("Hotel Receipt");
 		frame.setSize(600,400);
@@ -48,14 +50,15 @@ public class PrintReceipt {
 		sPanel.setLayout(new BorderLayout());
 		sPanel.add(centerPanel, BorderLayout.NORTH);
 		final JTextArea textArea = new JTextArea();
-		sPanel.add(textArea, BorderLayout.CENTER);
+		JScrollPane scroller = new JScrollPane(textArea);
+		sPanel.add(scroller, BorderLayout.CENTER);
 
-		JButton closeButton = new JButton("Back");
+		JButton closeButton = new JButton("Done");
 		sPanel.add(closeButton, BorderLayout.SOUTH);
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				GuestViewFrame newGVF = new GuestViewFrame(model);
+				GuestResHandler newGVF = new GuestResHandler(model);
 				frame.dispose();
 			}
 		});
