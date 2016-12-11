@@ -2,7 +2,6 @@ import java.io.Serializable;
 
 /**
  * Represents a user account - either guest or manager
- * 
  * @author Alex Liu
  */
 @SuppressWarnings("serial")

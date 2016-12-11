@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * Frame that allows user to see and cancel reservations that he has made.
- * @author 
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class GuestVCFrame
 {
@@ -111,6 +111,9 @@ public class GuestVCFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * Updates the room view with the current reservations of the user
+	 */
 	private void updateRoomView() {
 		Guest g = (Guest) model.getCurrentUser();
 		reservations = g.getReservations();

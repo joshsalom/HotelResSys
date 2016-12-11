@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  * Frame that shows all guest actions - Making and viewing/canceling reservations.
- * @author 
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class GuestResHandler
 {

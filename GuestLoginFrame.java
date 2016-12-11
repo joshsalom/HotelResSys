@@ -15,7 +15,7 @@ import java.io.*;
 
 /**
  * Frame that displays the guest login page. 
- * @author
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class GuestLoginFrame
 {

@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  * Frame that allows the user to select the date for a reservation.
- * @author
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class GuestCheckFrame
 {

@@ -1,6 +1,6 @@
 /**
  * RecceiptFormat interface with format method.
- * @author
+ * @author Harita Shroff
  *
  */
 public interface ReceiptFormat {

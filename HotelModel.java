@@ -12,6 +12,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * The model that stores information about users, hotel rooms, and hotel reservations.
+ * @author Joshua Salom
  */
 public class HotelModel implements Serializable
 {

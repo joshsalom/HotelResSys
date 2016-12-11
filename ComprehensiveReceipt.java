@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * ComprehensiveReceipt frame implements ReceiptFormat as part of strategy pattern.
- * @author
+ * @author Harita Shroff 
  *
  */
 public class ComprehensiveReceipt implements ReceiptFormat {

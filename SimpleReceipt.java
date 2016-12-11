@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * SimpleReceipt frame implements ReceiptFormat as part of strategy pattern.
- * @author
+ * @author Harita Shroff
  *
  */
 public class SimpleReceipt implements ReceiptFormat {

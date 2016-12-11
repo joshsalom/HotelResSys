@@ -2,6 +2,7 @@ import java.io.Serializable;
 
 /**
  * Represents a type of room - Economy or Luxury
+ * @author Alex Liu
  */
 enum RoomType{
 	ECONOMY, LUXURY;
@@ -10,6 +11,7 @@ enum RoomType{
 
 /**
  * Represents a room in the hotel
+ * @author Alex Liu
  */
 
 @SuppressWarnings("serial")

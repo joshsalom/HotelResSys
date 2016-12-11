@@ -9,7 +9,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * Frame that allows the user to make a reservation. 
- * @author
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class GuestViewFrame
 {
@@ -132,7 +132,10 @@ public class GuestViewFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public void updateRoomView(){
+	/**
+	 * Updates the text with all available rooms for the given dates
+	 */
+	private void updateRoomView(){
 		String rooms = "Available Rooms " + model.getCurrentStart() + "-" + model.getCurrentEnd() + "\n\n";
 		Reservation reservation = new Reservation(null, model.getCurrentStart(), model.getCurrentEnd(), model.getCurrentUser(), model.getTranscationID());
 		ArrayList<Reservation> reservations = null;

@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Represents a hotel reservation 
+ * @author - Alex Liu
  */
 @SuppressWarnings("serial")
 public class Reservation implements Serializable

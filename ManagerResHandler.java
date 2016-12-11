@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 /**
  * Frame that shows the options for a manager - load, view, quit, save. 
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class ManagerResHandler{
 	

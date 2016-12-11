@@ -6,6 +6,7 @@ import javax.swing.table.*;
 
 /**
  * Frame that represents the room view for a manager.
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class ManagerRoomViewFrame
 {

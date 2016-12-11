@@ -17,8 +17,7 @@ import javax.swing.border.Border;
 /**
  * printReceipt implements generic receipt frame, strategy pattern will be used
  * for Simple and Comprehensive receipts.
- * @author
- *
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class PrintReceipt {
 	/**

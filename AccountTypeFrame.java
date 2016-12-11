@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 /**
  * Frame that allows the user to select whether they are a guest or a manager.
- * @author
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class AccountTypeFrame
 {

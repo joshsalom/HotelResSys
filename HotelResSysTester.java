@@ -3,6 +3,7 @@ import java.util.TreeMap;
 
 /**
  * Starts and runs the hotel reservation system.
+ * @author Joshua Salom
  */
 public class HotelResSysTester {
 	

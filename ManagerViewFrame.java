@@ -7,7 +7,7 @@ import javax.swing.table.*;
 
 /**
  * The frame that shows the manager view of room information for a given date
- * @author Harita
+ * @author Alex Liu, Harita Shroff, Joshua Salom
  */
 public class ManagerViewFrame {
 
