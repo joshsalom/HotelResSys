@@ -22,7 +22,7 @@ public class ComprehensiveReceipt implements ReceiptFormat {
 	public String format() {
 		Guest usr= (Guest) model.getCurrentUser();
 		ArrayList<Reservation> reservationList = usr.getReservations();
-		String reservationData = usr.getName();
+		String reservationData = usr.getName() + ": " +  usr.getID();
 		reservationData += '\n';
 		int total = 0;
 		for (Reservation rsvtion: reservationList) {

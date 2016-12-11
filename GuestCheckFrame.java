@@ -83,7 +83,7 @@ public class GuestCheckFrame
 					frame.dispose();
 				}
 				else
-					JOptionPane.showMessageDialog(null, "Please enter a valid date");
+					JOptionPane.showMessageDialog(null, "Please enter a valid date (MM/DD/YYYY). Stay must be less than 60 nights.");
 			}
 
 		});
@@ -106,7 +106,7 @@ public class GuestCheckFrame
 					frame.dispose();
 				}	
 				else
-					JOptionPane.showMessageDialog(null, "Please enter a valid date");
+					JOptionPane.showMessageDialog(null, "Please enter a valid date (MM/DD/YYYY). Stay must be less than 60 nights.");
 			}
 
 		});
